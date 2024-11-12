@@ -1,7 +1,4 @@
-/*Installazione font Geist*/
-/* <uniquifier>: Use a unique and descriptive class name */
-/* <weight>: Use a value from 100 to 900 */
-
+/* Installazione font */
 .roboto-regular {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
@@ -14,6 +11,7 @@
     font-style: normal;
 }
 
+/* Inizio css per progetto*/
 
 * {
     margin: 0px;
