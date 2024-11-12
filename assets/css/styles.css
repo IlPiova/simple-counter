@@ -34,12 +34,12 @@ body {
 }
 
 .container {
-    width: 100%;
+    width: min-content;
     display: flex;
-    flex-direction: row;
+    gap: 40px;
     justify-content: space-around;
     align-items: end;
-    margin: 70px 0;
+    margin-top: 40px;
 }
 
 
@@ -57,11 +57,21 @@ body {
     height: 70px;
     background-color: inherit;
     padding: 15px;
+    margin: 0 80px;
     border-radius: 10px;
     border: 1px solid rgb(162, 152, 152);
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.res {
+    font-size: 8em;
+    font-weight: 700;
+    color: orangered;
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -99,12 +109,7 @@ body {
 
 
 
-.res {
-    font-size: 12em;
-    font-weight: 700;
-    color: orangered;
-    user-select: none;
-}
+
 
 #plus:hover, #minus:hover, #reset:hover {
     background-color: orangered;
@@ -119,8 +124,17 @@ body {
         text-decoration-color: orangered;
     }
 
+    .container {
+        width: 100%;
+        gap: 10px;
+    }
+
     .converted-container {
         width: 30%;
         height: fit-content;
+    }
+
+    .ar-symbols {
+        margin: 0;
     }
 }
