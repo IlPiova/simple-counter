@@ -1,4 +1,7 @@
 
+let countingResult = 0;
+
+
 //CREAZIONE ELEMENTI
 
 //creazione del container generale
@@ -36,7 +39,7 @@ counterContainer.append(plus)
 
 //creazione spazio per risultato
 let res = document.createElement("p")
-res.innerHTML = "0"
+res.innerHTML = countingResult
 res.classList.add("res")
 plus.after(res)
 
@@ -60,7 +63,7 @@ let resBinContainer = document.createElement("div")
 resBinContainer.classList.add("converted-container")
 // Valore in base due del risultato
 let resBin = document.createElement("p")
-resBin.innerHTML = "0"
+resBin.innerHTML = countingResult.toString(2)
 resBin.classList.add("converted-res")
 resBinContainer.append(resBin)
 // Label del container
@@ -77,7 +80,7 @@ let resOctContainer = document.createElement("div")
 resOctContainer.classList.add("converted-container")
 //Creazione elemento per risultato in base 8
 let resOct = document.createElement("p")
-resOct.innerHTML = "0"
+resOct.innerHTML = countingResult.toString(8)
 resOct.classList.add("converted-res")
 // Label del container
 let resOctLabel = document.createElement("p")
@@ -93,7 +96,7 @@ let resHexContainer = document.createElement("div")
 resHexContainer.classList.add("converted-container")
 //Creazione elemento per risultato in base 16
 let resHex = document.createElement("p")
-resHex.innerHTML = "0"
+resHex.innerHTML = countingResult.toString(16)
 resHex.classList.add("converted-res")
 // Label del container
 let resHexLabel = document.createElement("p")
@@ -108,55 +111,48 @@ resOctContainer.after(resHexContainer)
 
 //FUNZIONI
 
-//creazione funzione per convertire il risultato in tutte le basi
+//creazione funzione per convertire il risultato in binario, ottale ed esadecimale
 let resConverted = function () {
-    let resConverted = Number(res.innerHTML)
-    let resBinConverted = resConverted.toString(2)
-    resBin.innerHTML = resBinConverted
+    resBin.innerHTML = countingResult.toString(2)
 
-    let resOctConverted = resConverted.toString(8)
-    resOct.innerHTML = resOctConverted
+    resOct.innerHTML = countingResult.toString(8)
 
-    let resHexConverted = resConverted.toString(16)
-    resHex.innerHTML = resHexConverted
-
-    console.log(resHex.style.fontSize)
+    resHex.innerHTML = countingResult.toString(16)
 }
 
-// creazione funzione di somma
-let sum = function () {
-    let resSum = Number(res.innerHTML)
-    resSum++
-    String(resSum)
-    res.innerHTML = resSum
+// funzione che aggiorna il risultato del contatore
+let resUpdater = function (num) {
+    res.innerHTML = num
     resConverted()
-
-}
-
-// creazione funzione di differenza
-let diff = function () {
-    let resDiff = Number(res.innerHTML)
-    if (resDiff > 0) {
-        resDiff--
-    } else {
-        resDiff = 0
-    }
-    String(resDiff)
-    res.innerHTML = resDiff
-    resConverted()
-
 }
 
 let resetter = function () {
-    res.innerHTML = "0"
+    countingResult = 0
+    res.innerHTML = countingResult
     resConverted()
 }
 
 //GESTORI EVENTI 
 
 //assegnazione gestori
-plus.addEventListener("click", sum)
-minus.addEventListener("click", diff)
+
+//gestione evento click su operatori matematici
+counterContainer.addEventListener("click", function (event) {
+
+    if (event.target.getAttribute("id") == plus.id) {
+        ++countingResult
+    } else if (event.target.getAttribute("id") == minus.id) {
+        if (countingResult > 0) {
+            --countingResult
+        } else {
+            countingResult = 0
+        }
+    }
+    resUpdater(countingResult)
+
+})
+
+//gestione eventi su tasto reset
 reset.addEventListener("click", resetter)
 
 
