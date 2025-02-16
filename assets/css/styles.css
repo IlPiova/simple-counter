@@ -97,8 +97,7 @@ body {
 }
 
 .converted-res {
-    font-size: 2em;
-
+    font-size: clamp(2em, 5vw, 4px);
 }
 
 .converted-labels {
@@ -134,5 +133,14 @@ body {
 
     .ar-symbols {
         margin: 0;
+    }
+
+    #plus:hover, #minus:hover, #reset:hover {
+        background-color: inherit;
+    }
+
+    #plus:active, #minus:active, #reset:active {
+        background-color: orangered;
+        transition: background-color .3s linear;
     }
 }
